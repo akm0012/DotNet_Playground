@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using Xunit;
 
 namespace GradeBook.Tests
@@ -6,7 +7,7 @@ namespace GradeBook.Tests
     public class BookTests
     {
         [Fact]
-        public void Test1()
+        public void BookCalculatesAnAverageGrade()
         {
             // Arrange
             var book = new Book("My Test Book");

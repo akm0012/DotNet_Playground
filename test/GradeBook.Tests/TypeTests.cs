@@ -4,9 +4,44 @@ using Xunit;
 
 namespace GradeBook.Tests
 {
+
+    public delegate string WriteLogDelegate(string logMessage);
+
     public class TypeTests
     {
+        [Fact]
+        public void WriteLogDelegateCanPointToMethod()
+        {
+            // 1st log
+            WriteLogDelegate log = ReturnMessage;
 
+            // Long way
+            log = new WriteLogDelegate(ReturnMessage);
+            
+            // Short way
+            // 2nd log
+            log += ReturnMessage;
+            
+            // 3rd log
+            log += ReturnMessageWithBang;
+            
+            var result = log("This is a log");
+            Assert.Equal("This is a log!", result);
+        }
+
+        string ReturnMessage(string message)
+        {
+            Console.WriteLine("Return Message: " + message);
+            return message;
+        }
+        
+        string ReturnMessageWithBang(string message)
+        {
+            Console.WriteLine("Return Message With Bang: " + message + "!");
+
+            return message + "!";
+        }
+        
         [Fact]
         public void StringsBehaveLikeValueTypes()
         {

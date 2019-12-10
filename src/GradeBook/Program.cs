@@ -9,6 +9,12 @@ namespace GradeBook
         static void Main(string[] args)
         {
             var book = new Book("My Grade Book");
+            book.GradeAdded += OnGradeAdded;            
+            book.GradeAdded += OnGradeAdded;    
+            
+            // You can remove delegates  
+            book.GradeAdded -= OnGradeAdded;            
+            book.GradeAdded += OnGradeAdded;            
             
             // Get Input
             do
@@ -39,6 +45,11 @@ namespace GradeBook
             Console.WriteLine($"Low grade is {stats.Low}");
             Console.WriteLine($"High grade is {stats.High}");
             Console.WriteLine($"Letter Grade is {stats.LetterGrade}");
+        }
+
+        static void OnGradeAdded(object sender, EventArgs eventArgs)
+        {
+            Console.WriteLine("A grade was added!");
         }
     }
 }

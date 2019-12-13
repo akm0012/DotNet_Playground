@@ -8,7 +8,7 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new Book("My Grade Book");
+            IBook book = new DiskBook("My Grade Book");
             book.GradeAdded += OnGradeAdded;            
             book.GradeAdded += OnGradeAdded;    
             
@@ -16,6 +16,18 @@ namespace GradeBook
             book.GradeAdded -= OnGradeAdded;            
             book.GradeAdded += OnGradeAdded;            
             
+            EnterGrades(book);
+
+            var stats = book.GetStatistics();
+
+            Console.WriteLine($"Average is {stats.Average:N1}");
+            Console.WriteLine($"Low grade is {stats.Low}");
+            Console.WriteLine($"High grade is {stats.High}");
+            Console.WriteLine($"Letter Grade is {stats.LetterGrade}");
+        }
+
+        private static void EnterGrades(IBook book)
+        {
             // Get Input
             do
             {
@@ -36,15 +48,7 @@ namespace GradeBook
                 {
                     Console.WriteLine($"Invalid input. Try Again. {e.Message}");
                 }
-
             } while (true);
-
-            var stats = book.GetStatistics();
-
-            Console.WriteLine($"Average is {stats.Average:N1}");
-            Console.WriteLine($"Low grade is {stats.Low}");
-            Console.WriteLine($"High grade is {stats.High}");
-            Console.WriteLine($"Letter Grade is {stats.LetterGrade}");
         }
 
         static void OnGradeAdded(object sender, EventArgs eventArgs)

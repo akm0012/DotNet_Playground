@@ -99,10 +99,10 @@ namespace GradeBook.Tests
             Assert.Equal("New Name", book1.Name);
         }
 
-        private void GetBookSetNameRef(ref Book book, string newName)
+        private void GetBookSetNameRef(ref InMemoryBook inMemoryBook, string newName)
         {
-            book = new Book(newName);
-            book.Name = newName;
+            inMemoryBook = new InMemoryBook(newName);
+            inMemoryBook.Name = newName;
         }
         
         [Fact]
@@ -114,10 +114,10 @@ namespace GradeBook.Tests
             Assert.Equal("Book 1", book1.Name);
         }
 
-        private void GetBookSetName(Book book, string newName)
+        private void GetBookSetName(InMemoryBook inMemoryBook, string newName)
         {
-            book = new Book(newName);
-            book.Name = newName;
+            inMemoryBook = new InMemoryBook(newName);
+            inMemoryBook.Name = newName;
         }
         
         [Fact]
@@ -129,9 +129,9 @@ namespace GradeBook.Tests
             Assert.Equal("New Name", book1.Name);
         }
 
-        private void SetName(Book book, string newName)
+        private void SetName(InMemoryBook inMemoryBook, string newName)
         {
-            book.Name = newName;
+            inMemoryBook.Name = newName;
         }
 
         [Fact]
@@ -155,9 +155,9 @@ namespace GradeBook.Tests
             Assert.True(Object.ReferenceEquals(book1, book2));
         }
 
-        Book GetBook(string name)
+        InMemoryBook GetBook(string name)
         {
-            return new Book(name);
+            return new InMemoryBook(name);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace GradeBook.Tests
         public void BookCalculatesAnAverageGrade()
         {
             // Arrange
-            var book = new Book("My Test Book");
+            var book = new InMemoryBook("My Test Book");
             book.AddGrade(89.1);
             book.AddGrade(90.5);
             book.AddGrade(77.3);
@@ -29,7 +29,7 @@ namespace GradeBook.Tests
         public void BookCalculatesAnAverageGradeWithLetters()
         {
             // Arrange
-            var book = new Book("My Test Book");
+            var book = new InMemoryBook("My Test Book");
             book.AddGrade('A');
             book.AddGrade('B');
             
@@ -47,7 +47,7 @@ namespace GradeBook.Tests
         public void BookGradeCanNotBeInvalid()
         {
             // Arrange
-            var book = new Book("Test Book");
+            var book = new InMemoryBook("Test Book");
             
             // Act / Assert
             var exception =  Assert.Throws<ArgumentException>(() => book.AddGrade(105));
